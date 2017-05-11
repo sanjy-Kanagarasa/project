@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- DATA -->
+        <meta charset="UTF-8">
+        <title>Document</title>
+        
+        <!-- CSS -->
+        <link type="text/css" rel="stylesheet" href="css/default.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        
+        <!-- JAVASCRIPT -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"> </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+        <script>
+            var app = angular.module('ip_app', ['ngRoute']);
+            var ip = "http://ip-project.ddns.net:3000";
+        </script>
+        
+        <script src="controllers/login.js"></script>
+        <script src="controllers/main.js"></script>
+        <script src="controllers/detail.js"></script>
+        <script src="controllers/doc_dashboard.js"></script>
+        
+        <script type="text/javascript">
+            app.config(function($routeProvider, $locationProvider){
+                $routeProvider
+                .when('/', {
+                    templateUrl: 'templates/login.html',
+                    controller: 'login'
+                })
+                .when('/login', {
+                    templateUrl: 'templates/login.html',
+                    controller: 'login'
+                })
+                .when('/signup', {
+                    templateUrl: 'templates/signup.html',
+                    controller: 'signup'
+                })
+                .when('/student', {
+                    redirectTo: '/'
+                })
+                .when('/dashboard', {
+                    templateUrl: 'templates/dashboard.html',
+                    controller: 'doc_dashboard'
+                })
+                .when('/dashboard/student/:param0', {
+                    
+                })
+                .when('/dashboard/student/',{
+                    redirectTo: '/'
+                })
+                .when('/student/:param0', {
+                    templateUrl: 'templates/detail.html',
+                    controller: 'detail'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+            });
+            app.service('UserService', function(){
+                this.user = {};
+                
+                this.getUser = function(){
+                    return this.user;
+                }
+                this.setUser = function(_user){
+                    this.user = _user;
+                }
+                
+            });
+            app.service('UserFact', function(){
+                this.user = null;
+                this.setUser = function(a){
+                    this.user = a;
+                }
+                this.getUser = function(){
+                    return this.user;
+                }
+            });
+        </script>
+    </head>
+    <body ng-app="ip_app">
+        <header>
+            
+        </header>
+        <main>
+            <div class="paper" ng-view>
+                
+            </div>
+        </main>
+        <footer>
+            
+        </footer>
+    </body>
+</html>

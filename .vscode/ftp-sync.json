@@ -1,0 +1,25 @@
+{
+    "remotePath": "/home/pi/Documents/webLab/webLab",
+    "host": "81.165.123.247",
+    "username": "pi",
+    "password": "02111994",
+    "port": 22,
+    "secure": true,
+    "protocol": "sftp",
+    "uploadOnSave": true,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\.DS_Store",
+        "\\node_modules"
+    ],
+    "generatedFiles": {
+        "uploadOnSave": false,
+        "extensionsToInclude": [],
+        "path": ""
+    }
+}

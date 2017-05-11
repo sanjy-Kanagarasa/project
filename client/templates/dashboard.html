@@ -1,0 +1,25 @@
+<div>
+    <h2>Dashboard</h2>
+    <h3>{{user.name.firstname}}</h3>
+    <button class="btn btn_big right btn_red">LOG OUT</button>
+    <select class="in in_default in_big">
+        <option class="in in_big">sddbv</option>
+        <option>vdf</option>
+    </select>
+    <table class="tbl">
+        <tr>
+            <th>NAME</th>
+            <th>TEMP</th>
+            <th>ACTIVITY</th>
+            <th>TEMP avr</th>
+            <th>ACTIVITY avr</th>
+        </tr>
+        <tr ng-repeat="item in list" ng-class="{'tr_red':item.temp>38}" ng-click="goToStudentDetail(item._id)">
+            <td>{{item.name}}</td>
+            <td>{{item.act}}</td>
+            <td ng-class="{'warn':item.temp>38}">{{item.temp}}</td>
+            <td>{{item.act_av}}</td>
+            <td>{{item.temp_av}}</td>
+        </tr>
+    </table>
+</div>

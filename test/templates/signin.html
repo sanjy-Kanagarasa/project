@@ -1,0 +1,18 @@
+<div class="info_box" ng-class="info.class">
+    <p class="txt_white">{{info.text}}</p>
+</div>
+<div class="sign">
+    <div class="m_b_50">
+        <input class="in in_default in_big left" type="email" ng-model="login.email" placeholder="email"/>
+        <input class="in in_default in_big left" type="password" ng-model="login.password" placeholder="password"/>
+        <button class="btn btn_big btn_blue right txt_gray" ng-click="signin()">LOGIN</button>
+    </div>
+    <div>
+        <button class="btn btn_big btn_green right m_l_10 txt_gray" ng-click="goToSingUp()">SIGN UP</button>
+        <p class="left txt_gray">Have no account? create one!</p>
+    </div>
+</div>
+
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>

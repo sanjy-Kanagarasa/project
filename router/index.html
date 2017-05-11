@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>LabTutor</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js">
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <script>
+    </script>
+    <script>
+        var app = angular.module("projectApp", ['ngRoute']);
+        app.controller('RootController', function ($scope, $location, RoomService) {
+            $scope.goToNextPage = function () {
+                RoomService.setRoomId("aRoomId");
+                $location.path('/page1/' + test);
+            };
+            
+            $scope.ikBenDocent = function () {
+                RoomService.setRoomId("aRoomId");
+                roomIdRandom= Math.floor(Math.random() * 999999) + 1;
+                
+                $location.path('/docent/p' + roomIdRandom.toString());
+                console.log(roomIdRandom);
+            };
+            $scope.ikBenStudent = function () {
+                RoomService.setRoomId("aRoomId");
+                $location.path('/student');
+            };
+            $scope.getRoomID = function () {
+                RoomService.setRoomId("aRoomId");
+                roomId = $scope.roomId;
+                $location.path('/student/s' + roomId.toString());
+            };
+        });
+        
+        app.service('RoomService', function () {
+            var self = {};
+            self.roomId = "000000";
+            self.setRoomId = function (roomId) {
+                self.roomId = roomId;
+            };
+            self.getRoomId = function () {
+                return self.roomId;
+            };
+            return self;
+        });
+        app.config(function ($routeProvider) {
+            $routeProvider.when('/', {
+                templateUrl: 'main.html'
+                , controller: 'RootController'
+            }).when('/docent/p:docentId', {
+                templateUrl: 'pageDocent.html'
+                , controller: function ($scope, $location, $routeParams, RoomService) {
+                     var roomId = RoomService.getRoomId();
+                    var docentId = $routeParams.docentId;
+                    $scope.roomIdRandom = docentId;
+                    console.log("I am called with " + roomId + "\t" + $routeParams.docentId);
+                }
+            }).when('/student', {
+                //          templateUrl: 'pageStudent.html',
+                templateUrl: 'getRoomID.html'
+                , controller: function ($scope, $location, $routeParams, RoomService) {
+                    var roomId = RoomService.getRoomId();
+                    //console.log("I am called with " +  roomId + "\t" + $routeParams.studentId);
+                    var studentId = $routeParams.studentId;
+                }
+            }).when('/student/s:studentId', {
+                //          templateUrl: 'pageStudent.html',
+                templateUrl: 'pageStudent.html'
+                , controller: function ($scope, $location, $routeParams, RoomService) {
+                    var roomId = RoomService.getRoomId();
+                    var studentId = $routeParams.studentId;
+                    console.log("I am called with " + roomId + "\t" + $routeParams.studentId);
+                    $scope.testRoomId = studentId;
+                }
+            }).otherwise({
+                redirectTo: '/'
+            });
+        });
+        app.controller('MainController', function ($timeout, $scope) {
+            //$scope.name = "sanjy";
+            $scope.myFunction = function (taskid) {
+                alert("test ok" + taskid);
+                //console.log("Task Id is " + taskId);
+            }
+            $scope.visible = false;
+            $scope.visibleImage = false;
+            $scope.addRaw = function (newval) {
+                $scope.visible = !$scope.visible;
+                //console.log(newval);
+            }
+            $scope.$watch('name', function (newVal, oldVal) {
+                var myName = "Sanjeyan Kanagarasa";
+                if (($scope.name.length >= 0) && $scope.visible == false) {
+                    //alert("Wow, you've got a long name");
+                    $scope.addRaw(newVal);
+                    if (newVal != myName) {
+                        $timeout(function () {
+                            $scope.name = myName;
+                        }, 7000);
+                    }
+                }
+                else if ($scope.name.length == 0 && $scope.visible == true) {
+                    $scope.addRaw(newVal);
+                }
+            });
+            $scope.checkAllOk = function () {
+                    $scope.isChecked = true;
+                }
+                //$scope.nameArray[index].value1 = is
+            $scope.name1 = {}
+            $scope.isCheckedName = function (index) {
+                a = $scope.name1;
+                if (a.value1 && a.value2 && a.value3 && a.value4 && a.value5 && a.value6 && a.value7) {
+                    $scope.Allesinorde1 = "Allesinorde1";
+                    $scope.hide = "hide";
+                    $scope.visibleImage = true;
+                }
+                else {
+                    $scope.Allesinorde1 = "inputName";
+                    $scope.hide = "";
+                }
+            }
+        });
+        app.controller('SecondController', function ($scope, $http) {
+            $scope.result = [];
+            $http.get("http://localhost:3000/api/users").success(function (res) {
+                // Doe iets met resultaat 'res'
+                $scope.result = res;
+            });
+            var testCounter;
+            var ex1Value = false;
+            var ex2Value = false;
+            var ex3Value = false;
+            var ex4Value = false;
+            var ex5Value = false;
+            var ex6Value = false;
+            var ex7Value = false;
+            $scope.newperson = {};
+            $scope.addPerson = function () {
+                if ($scope.newperson.count == null) {
+                    testCounter = 0;
+                }
+                else {
+                    testCounter = $scope.newperson.count;
+                }
+                $http.post("http://localhost:3000/api/user", {
+                    'name': $scope.newperson.name
+                    , 'firstname': $scope.newperson.firstname
+                    , 'count': testCounter
+                    , 'ex1': ex1Value
+                    , 'ex2': ex2Value
+                    , 'ex3': ex1Value
+                    , 'ex4': ex1Value
+                    , 'ex5': ex1Value
+                    , 'ex6': ex1Value
+                    , 'ex7': ex1Value
+                , }).success(function (res) {
+                    $scope.result = res;
+                });
+            };
+            $scope.deleteUser = function (user) {
+                $http.post('http://localhost:3000/api/deleteUser', user).success(function (res) {
+                    alert(user.name + " " + user.firstname + " has been deleted!");
+                    $scope.result = res;
+                });
+            };
+            $scope.isChecked2 = function (index, user) {
+                //$scope.nameArray[index].value1 = is
+                a = $scope.result[index];
+                if (a.value1 && a.value2 && a.value3 && a.value4 && a.value5 && a.value6 && a.value7) {
+                    $scope.Allesinorde1 = "Allesinorde1";
+                    $scope.hide = "hide";
+                    $scope.visibleImage = true;
+                }
+                else {
+                    $scope.Allesinorde1 = "";
+                    $scope.hide = "";
+                }
+                if (a.value1 != undefined) {
+                    //doe iets
+                }
+                else {
+                    $scope.result[index].value1 = user.ex1;
+                    $scope.result[index].value2 = user.ex2;
+                    $scope.result[index].value3 = user.ex3;
+                    $scope.result[index].value4 = user.ex4;
+                    $scope.result[index].value5 = user.ex5;
+                    $scope.result[index].value6 = user.ex6;
+                    $scope.result[index].value7 = user.ex7;
+                }
+            }
+            $scope.updateUser = function (user, index) {
+                user.ex1 = $scope.result[index].value1;
+                user.ex2 = $scope.result[index].value2;
+                user.ex3 = $scope.result[index].value3;
+                user.ex4 = $scope.result[index].value4;
+                user.ex5 = $scope.result[index].value5;
+                user.ex6 = $scope.result[index].value6;
+                user.ex7 = $scope.result[index].value7;
+                $scope.result[index].value1 = user.ex1;
+                $scope.result[index].value2 = user.ex2;
+                $scope.result[index].value3 = user.ex3;
+                $scope.result[index].value4 = user.ex4;
+                $scope.result[index].value5 = user.ex5;
+                $scope.result[index].value6 = user.ex6;
+                $scope.result[index].value7 = user.ex7;
+                $http.post('http://localhost:3000/api/updateUser', user).success(function (res) {
+                    $scope.result = res;
+                });
+            };
+        });
+    </script>
+</head>
+
+<body ng-app="projectApp" class="container">
+    <div class="text-center">
+        <header>
+            <h1>Opdracht LabTutor</h1> </header>
+    </div>
+    <div class="content">
+        <hr>
+        <div ng-view></div>
+        <hr> </div>
+    <footer> footer </footer>
+</body>
+
+</html>

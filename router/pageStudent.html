@@ -1,0 +1,73 @@
+    <h1 class="well well-sm">Kamer #{{ testRoomId }}</h1>
+    <div ng-controller="MainController">
+    <!--class="jumbotron"-->
+    <div class="well well-sm">
+        <form class="form-inline">
+            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input size="auto" ng-model="name" type="text" class="form-control" placeholder="Jouw naam"> </div>
+            <button class="btn btn-primary">Join</button>
+        </form>
+    </div>
+    <table rules="rows" class="table">
+        <tr ng-show="visible" ng-class="Allesinorde1">
+            <td><b>{{name}}</b><span ng-checked="isCheckedName($index)"> YOU</span></td>
+            <td>
+                <input type="checkbox" ng-model="name1.value1" name="checkBox"> </td>
+            <td>
+                <input type="checkbox" ng-model="name1.value2" name="checkBox"> </td>
+            <td>
+                <input type="checkbox" ng-model="name1.value3" name="checkBox"> </td>
+            <td>
+                <input type="checkbox" ng-model="name1.value4" name="checkBox"> </td>
+            <td>
+                <input type="checkbox" ng-model="name1.value5" name="checkBox"> </td>
+            <td>
+                <input type="checkbox" ng-model="name1.value6" name="checkBox"> </td>
+            <td>
+                <input type="checkbox" ng-model="name1.value7" name="checkBox"> </td>
+            <td ng-class=""> <img ng-show="hide" ng-src="tick.png" class="image1" height="20px" ; width="20px" ;> </td>
+            <td>
+                <button class="btn btn-danger btn-xs" ng-click="deleteUser(user)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div ng-controller="SecondController">
+    <table rules="rows" class="table">
+        <tr style="font-size:25px">
+            <td><b>Naam student</b></td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td><img class="image" src="Finish%20Flag-48.png" height="30px" ; width="30px" ;> </td>
+            <td> </td>
+        </tr>
+        <tr ng-repeat="user in result" ng-class="Allesinorde1">
+            <td ng-checked="isChecked2($index, user)"><b>{{ user.name }} {{ user.firstname }}</b> </td>
+            <td>
+                <input ng-change="updateUser(user, $index)" type="checkbox" ng-model="user.value1" name="checkBox" disabled> </td>
+            <td>
+                <input ng-change="updateUser(user, $index)" type="checkbox" ng-model="user.value2" name="checkBox" disabled> </td>
+            <td>
+                <input ng-change="updateUser(user, $index)" type="checkbox" ng-model="user.value3" name="checkBox" disabled> </td>
+            <td>
+                <input ng-change="updateUser(user, $index)" type="checkbox" ng-model="user.value4" name="checkBox" disabled> </td>
+            <td>
+                <input ng-change="updateUser(user, $index)" type="checkbox" ng-model="user.value5" name="checkBox" disabled> </td>
+            <td>
+                <input ng-change="updateUser(user, $index)" type="checkbox" ng-model="user.value6" name="checkBox" disabled> </td>
+            <td>
+                <input ng-change="updateUser(user, $index)" type="checkbox" ng-model="user.value7" name="checkBox" disabled> </td>
+            <td ng-class=""> <img ng-show="hide" ng-src="tick.png" class="image1" height="20px" ; width="20px" ;> </td>
+            <!--<td></td><div class="progress"><div class="progress-bar" role="progressbar"  style="width:90%"></div></div>-->
+            <!--<td>
+                <button class="btn btn-danger btn-xs" ng-click="deleteUser(user)" >Delete</button>
+            </td>-->
+            
+        </tr>
+    </table>
+</div>

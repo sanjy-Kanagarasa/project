@@ -1,0 +1,20 @@
+{
+    type: 'line',
+    data: {
+        labels: ['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag', 'mijndag'],
+        datasets: [{
+            label: 'movement',
+            data: [12, 19, 3, 17, 6, 3, 7, 25],
+            backgroundColor: "rgba(153,255,51,0.4)"
+        }, {
+            label: 'temperature',
+            data: [7, 9, 35, 37, 38, 39, 40, 5],
+            backgroundColor: "rgba(255,13,0,0.4)"
+        },
+        {
+            label: 'blabla',
+            data: [0, 29, 25, 27, 28, 88, 20, 7],
+            backgroundColor: "rgba(115,35,255,0.4)"
+        }]
+    }
+});

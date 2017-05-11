@@ -1,0 +1,41 @@
+
+.image{
+    margin-top: 8px;
+    margin-bottom: -2px;
+}
+.Allesinorde{
+        background-color: #47D61C;
+    }
+.inputName{
+    background-color: orange;
+    color: white;
+}
+.tick{
+    background-image: url("tick.png");
+    background-color: #cccccc;
+}
+.Allesinorde1{
+    background-color: #47D61C;
+    color: white;
+}
+
+    /*
+tr {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+tr:first-child {}
+
+td,
+th {
+    display: block;
+    margin: 3px;
+    flex: 12;
+}
+
+table,
+th,
+td {
+    border: solid 1px;
+}*/

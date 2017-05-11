@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>selector</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js">
+    </script>
+    <script>
+        var app = angular.module("myapp", []);
+        app.factory("MyService", function () {
+            var obj = {};
+            obj.users = ["tom", "mieke", "hannes", "arno"];
+            return obj;
+        });
+        app.controller("MyController", function ($scope, MyService) {
+            $scope.users = MyService.users;
+        });
+        app.controller("MyController2", function ($scope, MyService) {
+            $scope.getdata = function () {
+                $scope.data = MyService.users;
+            };
+        });
+    </script>
+</head>
+
+<body ng-app="myapp">
+    <div ng-controller="MyController"> {{users}} </div>
+    <div ng-controller="MyController2">
+        <ul>
+            <li ng-repeat="x in data">{{x}}</li>
+        </ul>
+        <button ng-click="getdata()" value="getdata"> get data </button>
+    </div>
+</body>

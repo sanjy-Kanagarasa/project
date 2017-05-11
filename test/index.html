@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- DATA -->
+        <meta charset="UTF-8">
+<!--         <base href="/">-->
+        <title>Document</title>
+        
+        <!-- CSS -->
+        <link type="text/css" rel="stylesheet" href="css/default.css"/>
+        
+        <!-- JAVASCRIPT -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+        <script>
+            var app = angular.module('ip_app', ['ngRoute']);
+        </script>
+        
+        <script src="controllers/signin.js"></script>
+        <script src="controllers/signup.js"></script>
+        <script src="controllers/main.js"></script>
+        
+        <script type="text/javascript">
+            app.config(function($routeProvider, $locationProvider){
+                $routeProvider
+                .when('/', {
+                    templateUrl: 'templates/main.html',
+                    controller: 'main'
+                })
+                .when('/signin', {
+                    templateUrl: 'templates/signin.html',
+                    controller: 'signin'
+                })
+                .when('/signup', {
+                    templateUrl: 'templates/signup.html',
+                    controller: 'signup'
+                })
+                .when('/verify1', {
+                    templateUrl: 'templates/verify.html',
+                    controller: ''
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+                //$locationProvider.html5Mode(true);
+            });
+        </script>
+    </head>
+    <body ng-app="ip_app">
+        <header>
+            
+        </header>
+        <main>
+            <div class="paper" ng-view>
+                
+            </div>
+        </main>
+        <footer>
+            
+        </footer>
+    </body>
+</html>
