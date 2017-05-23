@@ -11,6 +11,6 @@ git clone https://github.com/sanjy-Kanagarasa/project.git.
 
 cd project
 
-npm install
+npm install --save
 
 nodemon server.js
