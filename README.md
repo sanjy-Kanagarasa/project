@@ -9,6 +9,8 @@
 
 git clone https://github.com/sanjy-Kanagarasa/project.git. 
 
+cd project
+
 npm install
 
 nodemon server.js
