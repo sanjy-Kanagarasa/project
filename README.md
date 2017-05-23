@@ -7,6 +7,6 @@
 * Dries Carmen
 
 
-git clone https://github.com/sanjy-Kanagarasa/project.git.
+git clone https://github.com/sanjy-Kanagarasa/project.git. 
 npm install
 nodemon server.js
