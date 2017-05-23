@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="css/default.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        
+        <!-- JAVASCRIPT -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+        <script>
+            var app = angular.module('ip_app', []);
+            var ip = "http://localhost:3000";
+            var siteDomain = "http://localhost:3000/";
+        </script>
+        <script src="controllers/login.js"></script>
+</head>
+
+<body ng-app="ip_app">
+    <main>
+        <div class="paper" ng-controller="login">
+            <div class="info_box" ng-class="info.class">
+                <p class="txt_white">{{info.text}}</p>
+            </div>
+
+            <div class="sign">
+                <div class="signup m_b_25">
+                    <h3 class="txt_gray">Login!</h3>
+                    <input class="in in_default in_big left" type="email" ng-model="login.email" placeholder="email" />
+                    <input class="in in_default in_big left" type="password" ng-model="login.password" placeholder="password" />
+                    <button class="btn btn_big btn_blue right txt_gray" ng-click="signin()">LOGIN</button>
+                </div>
+                <div class=" signup m_b_50">
+                    <h3 class="txt_gray">Create a account!</h3>
+                    <input class="in in_default in_big left m_b_10" ng-model="user.firstname" type="text" placeholder="Name" />
+                    <input class="in in_default in_big left m_b_10" ng-model="user.lastname" type="text" placeholder="Last Name" />
+                    <input class="in in_default in_big left m_b_5" ng-model="user.phone" type="tel" placeholder="Phone Number" />
+                    <br class="br">
+                    <input class="in in_default in_big left m_b_10" ng-model="user.email" type="email" placeholder="Email" />
+                    <br class="br">
+                    <input class="in in_default in_big left m_b_20" ng-model="user.password" type="password" placeholder="Password" />
+                    <input class="in in_default in_big left m_b_20" ng-model="password_again" type="password" placeholder="Password again" />
+                    <input ng-model="user.bday" class="in in_default in_big left m_b_5" type="date" />
+                    <br class="br m_b_20">
+                    <br>
+                    <input class="in in_default in_big left m_b_5" ng-model="user.street" type="text" placeholder="Address" />
+                    <input class="in in_default in_big left m_b_5" ng-model="user.nr" type="text" placeholder="Nr" />
+                    <input class="in in_default in_big left m_b_5" ng-model="user.zipcode" type="text" placeholder="Zip code" />
+                    <input class="in in_default in_big left m_b_5" ng-model="user.place" type="text" placeholder="Place" />
+                    <select class="in in_default in_big left m_b_20" ng-model="user.country">
+                        <option value="be">Belgium</option>
+                        <option value="fi">Finland</option>
+                    </select>
+                    <br class="br">
+                    <!-- TYPE -->
+                    <select ng-change="changeUserType()" ng-model="user.type" class="in in_default in_big left m_b_5">
+                        <option value="d">DOCENT</option>
+                        <option value="p">PARENT</option>
+                    </select>
+                    <br class="br">
+                    <!-- SCHOOL -->
+                    <!--<select ng-change="changeUserSchool()" ng-show="user.type=='s'" ng-model="user.school" class="in in_default in_big left m_b_5">
+            <option ng-repeat="school in schools" value={{school._id}}>{{school.name}}</option>
+        </select>-->
+                    <!-- KLAS -->
+                    <!--<select ng-show="user.type=='s' && classes.length>0" ng-model="user.class" class="in in_default in_big left m_b_5">
+            <option ng-repeat="class in classes" value="{{class._id}}">{{class}}</option>
+        </select>-->
+                    <button class="btn btn_xl btn_green right txt_gray" ng-click="signup()">SIGN UP</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

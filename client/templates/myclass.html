@@ -1,0 +1,97 @@
+<!-- ------------------------- NIEUWE STUDENT ------------------------- -->
+<div class="popup_back" ng-class="nieuweStudentClass.back" ng-click="closeNieuweStudent()"></div>
+<div class="popup" ng-class="nieuweStudentClass.front">
+    <h3 class="txt_black">ADD A NEW STUDENT</h3>
+    <input type="text" placeholder="name" ng-model="newStudent.firstname"/>
+    <input type="text" placeholder="surname" ng-model="newStudent.lastname"/>
+    <select class="in in_default in_big" ng-model="newStudent.classId" ng-change="">
+        <option ng-repeat="item in klassen" value="{{item._id}}">{{item.name}}</option>
+    </select>
+    <button class="btn btn_green btn_big" ng-click="openNieuweKlas()">ADD CLASS</button>
+    <button class="btn btn_green btn_big" ng-click="addNewStudent()">ADD NEW STUDENT</button>
+    <button class="btn btn_red btn_big right" ng-click="closeNieuweStudent()">SLUIT</button>
+</div>
+<!-- --------------------------------------------------------------- -->
+
+<!-- ------------------------- NIEUWE KLAS ------------------------- -->
+<div class="popup_back" ng-class="nieuweKlasClass.back" ng-click="closeNieweKlas()"></div>
+<div class="popup" ng-class="nieuweKlasClass.front">
+    <h3 class="txt_black">ADD A NEW CLASS</h3>
+    <input type="text" class="in in_default in_big" ng-model="nieuweKlas.name" placeholder="class name"/>
+    <button class="btn btn_green btn_big" ng-click="postNewClass()">ADD CLASS</button>
+    <button class="btn btn_red btn_big right" ng-click="closeNieweKlas()">SLUIT</button>
+</div>
+<!-- --------------------------------------------------------------- -->
+<div>
+    <h2>Dashboard</h2>
+    <div>
+    <select class="in in_default in_big" ng-model="selectedClassId" ng-change="classChange()" value='select'>
+        <option value="select">SELECT CLASS</option>
+        <option ng-repeat="item in klassen | orderBy : 'name'" value="{{item._id}}">{{item.name}}</option>
+    </select>
+    <button class="btn btn_green btn_big" ng-click="openNieuweKlas()">ADD CLASS</button>
+    <button class="btn btn_blue btn_big right" ng-click="openNieuweStudent()">ADD STUDENT</button>
+    </div>
+    <table class="tbl" ng-show="students.length">
+        <tr class="not">
+            <th>NAME</th>
+            <th>ACTIVITY</th>
+            <th>TEMP</th>
+        </tr>
+        <tr ng-repeat="item in students | orderBy : '-data'" ng-class="{'tr_red':item.temp>38}" ng-click="goToStudentDetail(item._id)">
+            <td>{{item.firstname}} {{item.lastname}}</td>
+            <td><p ng-class="{'warn':item.data>2000, 'cold': item.data < 500}">{{item.data}}</p></td>
+            <td><p ng-class="{'warn': item.temp > 38, 'cold': item.temp < 33}">{{item.temp }}</p></td>
+        </tr>
+        <tr class="not">
+            <td><h3 class="txt_black">Class average</h3></td>
+            <td><h3 class="txt_black">{{avrMov(students)}}</h3></td>
+            <td><h3 class="txt_black">{{avrTemp(students)}}</h3></td>
+        </tr>
+    </table>
+    <table class="tbl" ng-show="!students.length">
+        <tr class="not">
+            <th><p>PLEASE SELECT A CLASS</p></th>
+        </tr>
+        <tr ng-repeat="item in klassen| orderBy : 'name'" ng-class="{'tr_red':item.temp>38}" ng-click="classSelect(item._id)">
+            <td><p>{{item.name}}</p></td>
+        </tr>
+    </table>
+    <table class="tbl" ng-show="students.length">
+        <tr class="not">
+            <th colspan="2"><h3 class="txt_black">INFO</h3></th>
+        </tr>
+        <tr class="not">
+            <td><p class="cold">MOVE - BLUE : 0 - 500</p></td>
+            <td><p>Too calm or not measured jet.</p></td>
+        </tr>
+        <tr class="not">
+            <td><p>MOVE - No Color : 500 - 2000</p></td>
+            <td><p>Normal movement.</p></td>
+        </tr>
+        <tr class="not">
+            <td><p class="warn">MOVE - RED : 2000 +</p></td>
+            <td><p>Too active.</p></td>
+        </tr>
+        <tr class="not">
+            <td><p class="cold">TEMP - BLUE : below 33°C</p></td>
+            <td><p>Too cold.</p></td>
+        </tr>
+        <tr class="not">
+            <td><p>TEMP - No Color: 33°C - 38°C</p></td>
+            <td><p>Normal temprature.</p></td>
+        </tr>
+        <tr class="not">
+            <td><p class="warn">TEMP - RED : above 38°C</p></td>
+            <td><p>Too Hot.</p></td>
+        </tr>
+    </table>
+    <!--<div class="container">
+        <div ng-repeat="item in students">
+            <p>{{item.firstname}}</p>
+        </div>
+    </div>-->
+</div>
+<div class="info_box hallo" ng-class="info.class">
+    <p class="txt_white">{{info.text}}</p>
+</div>

@@ -4,6 +4,7 @@
         <!-- DATA -->
         <meta charset="UTF-8">
         <title>Document</title>
+        <link rel="icon" href="images/icons/logo.png"/>
         
         <!-- CSS -->
         <link type="text/css" rel="stylesheet" href="css/default.css"/>
@@ -15,13 +16,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
         <script>
             var app = angular.module('ip_app', ['ngRoute']);
-            var ip = "http://ip-project.ddns.net:3000";
+            var ip = "http://ip-project.ddns.net";
         </script>
         
-        <script src="controllers/login.js"></script>
         <script src="controllers/main.js"></script>
         <script src="controllers/detail.js"></script>
-        <script src="controllers/doc_dashboard.js"></script>
+        <script src="controllers/myclass.js"></script>
+        <script src="controllers/login.js"></script>
         
         <script type="text/javascript">
             app.config(function($routeProvider, $locationProvider){
@@ -41,9 +42,9 @@
                 .when('/student', {
                     redirectTo: '/'
                 })
-                .when('/dashboard', {
-                    templateUrl: 'templates/dashboard.html',
-                    controller: 'doc_dashboard'
+                .when('/myclass', {
+                    templateUrl: 'templates/myclass.html',
+                    controller: 'myclass'
                 })
                 .when('/dashboard/student/:param0', {
                     
@@ -51,7 +52,7 @@
                 .when('/dashboard/student/',{
                     redirectTo: '/'
                 })
-                .when('/student/:param0', {
+                .when('/student/:param0/:param1/:param2', {
                     templateUrl: 'templates/detail.html',
                     controller: 'detail'
                 })
@@ -83,7 +84,12 @@
     </head>
     <body ng-app="ip_app">
         <header>
-            
+            <div class="paper">
+                <a href="#"><img class="logo_header" src="images/icons/logo.png"/></a>
+                <!--<nav>
+                    <a class="btn_header">Docent Naam</a>
+                </nav>-->
+            </div>
         </header>
         <main>
             <div class="paper" ng-view>

@@ -1,4 +1,4 @@
-app.controller('login', function($scope, $http, $location, $interval, UserService, UserFact){
+app.controller('login', function($scope, $http, $location, $interval /*UserService,*/){
     $scope.info = {
         'text' : 'INFO BOX',
         'class' : 'info_hidden'
@@ -7,21 +7,22 @@ app.controller('login', function($scope, $http, $location, $interval, UserServic
         'email' : '',
         'password' : ''
     }
+    
     $scope.signin = function(){
         if($scope.login.email && $scope.login.password){
             $http.post(ip + '/api/loginUser', $scope.login).then(function(res){
                 $scope.showInfo(res.data.text, res.data.class);
                 if(res.data.succes == true){
-                    UserFact.setUser(res.data.user);
-                    console.log(UserFact.getUser());
+                    //UserFact.setUser(res.data.user);
+                    //console.log(UserFact.getUser());
                     if(res.data.user.type == 's'){
-                        $location.path('/dashboard');
+                        $location.path('/home');
                     }
                     else if(res.data.user.type == 'p'){
-                        $location.path('/dashboard');
+                        $location.path('/home');
                     }
                     else if(res.data.user.type == 'd'){
-                        $location.path('/dashboard');
+                        $location.path("/myclass");
                     }
                     else{
                         $location.path('/login');
@@ -66,8 +67,8 @@ app.controller('login', function($scope, $http, $location, $interval, UserServic
         'password' : ''
     }
     $scope.schools = [];
-    $scope.classes = [];
-    
+
+
     $scope.getSchools = function(){
         $http.get(ip + '/api/schools', {}).success(function(schools){
             $scope.schools = schools;

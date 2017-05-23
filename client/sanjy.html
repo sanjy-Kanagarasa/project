@@ -21,7 +21,7 @@
 	//$http.get('todos.json').success(function(res){
 		$scope.myDate = res.feeds;
 
-	
+		
 		for (var i = 0; i < res.feeds.length; i++) {
             var test =Math.sqrt(Math.pow(res.feeds[i].field1, 2) + Math.pow(res.feeds[i].field2, 2) + Math.pow(res.feeds[i].field3, 2));
 			x_axis.push(test);

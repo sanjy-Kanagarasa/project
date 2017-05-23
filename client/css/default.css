@@ -1,8 +1,13 @@
 p, a, h1, h2, h3, h4, h5, h6, input, label, select, option, button{
     font-family: 'Open Sans', sans-serif;
+    color: #fafafa;
+}
+input, select, option{
+    color: #5a5a5a;
 }
 html, body{
-    background-color: #fafafa;
+    background-color: #353535;
+    background-image: url(../images/wallpapers/Google-Wallpaper-HD-20.png);
 }
 body, header, main, footer, div{
     overflow-y: auto;
@@ -10,21 +15,47 @@ body, header, main, footer, div{
     margin: 0px;
 }
 header{
-    background-color: #fafafa;
     padding-top: 10px;
     padding-bottom: 5px;
+    border-bottom: 1px solid #fff;
+}
+header > div > nav{
+    padding: 15px 0px;
+    float: right;
+}
+.warn{
+    background-color: red;
+    color: white!important;
+    border-radius: 10px;
+}
+.cold{
+    background-color: #2848fa;
+    color: white!important;
+    border-radius: 10px;
+}
+header > div > nav > a{
+    padding: 0px 15px;
+}
+.logo_header{
+    width: 35px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 25px;
+}
+.btn_header{
+    color: white;
 }
 main{
-    background-color: #e8e8e8;
+/*    background-color: #f1f1f1;*/
     padding-top: 50px;
     padding-bottom: 75px;
     overflow-y: auto;
-    background-image: url(../images/wallpapers/Google-Wallpaper-HD-20.png);
-    background-repeat: no-repeat;
+    
+/*    background-repeat: no-repeat;*/
     background-size: cover;
 }
 .paper{
-    width: 1200px;
+    width: 1025px;
     margin: auto;
 }
 .sign{
@@ -32,7 +63,6 @@ main{
     width: 500px;
 }
 footer{
-    background-color: #fafafa;
     padding-top: 5px;
     padding-bottom: 10px;
 }
@@ -45,9 +75,72 @@ footer{
     padding-top: 0px;
     border-radius: 15px;
 }
+.container{
+    width: 1025px;
+}
+.container > div{
+    background-color: white;
+    border-radius: 15px;
+    width: 240px;
+    padding: 5px;
+    float: left;
+    margin-right: 6px;
+}
+/* -------------------------- popup ------------------------- */
+.popup{
+    transition: 0.6s;
+    position: fixed;
+    margin-left: 50%;
+    left: -515px;
+    width: 1010px;
+    top: 100px;
+    bottom: 150px;
+    background-color: #f1f1f1;
+    border: 1px solid #353535;
+    border-radius: 15px;
+    padding: 10px;
+}
+.popup_back{
+    transition: 0.6s;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: #353535;
+}
+.closed{
+    z-index: -5;
+    opacity: 0;
+}
+.open{
+    opacity: 1;
+}
+.open_back{
+    opacity: 0.4;
+}
+.index_0{
+    z-index: 0;
+}
+.index_1{
+    z-index: 1;
+}
+.index_2{
+    z-index: 2;
+}
+.index_3{
+    z-index: 3;
+}
+.index_4{
+    z-index: 4;
+}
+.index_5{
+    z-index: 5;
+}
 /* -------------------------- TABLE ------------------------- */
 .tbl{
     width: 100%;
+    margin-top: 25px;
     
     border: 1px solid #8b8b8b;
     border-radius: 10px !important;
@@ -64,7 +157,7 @@ footer{
     border-bottom-left-radius: 5px;
     background-color: #ebebeb;
 }
-.tbl > tbody > tr:hover:not(:first-child){
+.tbl > tbody > tr:hover:not(.not){
     background-color: #61a8e6!important;
     cursor: pointer;
 }
@@ -75,11 +168,23 @@ footer{
     padding: 15px;
 }
 .tbl > tbody > tr > td{
-    padding: 15px 15px;
+    padding: 10px 10px;
+    margin: 10px;
+}
+.tbl > tbody > tr > th > p{
+    color: #4a4a4a;
+}
+.tbl > tbody > tr > td > p{
+    padding: 5px;
+    margin: 0px;
+    color: #4a4a4a;
 }
 .tr_red, .tr_red > td{
     background-color: #fa6a62!important;
     color: white;
+}
+.txt_black{
+    color: black!important;
 }
 /* ---------- INFO ---------- */
 .info_box{

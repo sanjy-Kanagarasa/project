@@ -1,7 +1,7 @@
 {
-    "remotePath": "/home/pi/Documents/webLab/webLab",
+    "remotePath": "/home/sanjy/Documents/project",
     "host": "81.165.123.247",
-    "username": "pi",
+    "username": "sanjy",
     "password": "02111994",
     "port": 22,
     "secure": true,
