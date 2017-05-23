@@ -9,6 +9,8 @@
 
 git clone https://github.com/sanjy-Kanagarasa/project.git. 
 
+start mongodb
+
 cd project
 
 npm install --save
